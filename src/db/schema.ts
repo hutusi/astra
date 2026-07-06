@@ -1,10 +1,12 @@
 import { sql } from "drizzle-orm";
 import {
   check,
+  index,
   integer,
   sqliteTable,
   text,
   uniqueIndex,
+  type AnySQLiteColumn,
 } from "drizzle-orm/sqlite-core";
 import { nanoid } from "nanoid";
 
@@ -156,8 +158,202 @@ export const goals = sqliteTable("goals", {
   createdAt: createdAt(),
 });
 
+// The habit-activity stream, separate from the star ledger: streak/none
+// habits produce check-ins but no stars, and streaks are derived from
+// check-ins on read. A stars-mode check-in gets a 1:1 linked transaction.
+export const checkIns = sqliteTable(
+  "check_ins",
+  {
+    id: id(),
+    habitId: text("habit_id")
+      .notNull()
+      .references(() => habits.id),
+    // Denormalized for ledger queries and family scoping.
+    childId: text("child_id")
+      .notNull()
+      .references(() => users.id),
+    date: text("date").notNull(), // YYYY-MM-DD, family TZ
+    status: text("status", { enum: ["pending", "confirmed", "rejected"] })
+      .notNull()
+      .default("pending"),
+    createdById: text("created_by_id")
+      .notNull()
+      .references(() => users.id),
+    confirmedById: text("confirmed_by_id").references(() => users.id),
+    confirmedAt: integer("confirmed_at", { mode: "timestamp_ms" }),
+    autoConfirmed: integer("auto_confirmed", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    note: text("note"),
+    createdAt: createdAt(),
+  },
+  (t) => [
+    // Idempotency: one check-in per habit per day. Two guardians (or the
+    // child plus a guardian) can't double-log the same completion.
+    uniqueIndex("check_ins_habit_date_unique").on(t.habitId, t.date),
+    index("check_ins_child_date_idx").on(t.childId, t.date),
+  ],
+);
+
+export const TRANSACTION_TYPES = [
+  "earn",
+  "bonus",
+  "penalty",
+  "redeem",
+  "reversal",
+  "adjust",
+] as const;
+export type TransactionType = (typeof TRANSACTION_TYPES)[number];
+
+// The Star Ledger. Owned by the CHILD, continuous across plan years.
+// Immutable: amounts and types are never UPDATEd — corrections are new
+// reversal/adjust rows. Balance = SUM(amount) WHERE status='confirmed'.
+// Only src/server/services/ledger.ts may write here.
+export const starTransactions = sqliteTable(
+  "star_transactions",
+  {
+    id: id(),
+    childId: text("child_id")
+      .notNull()
+      .references(() => users.id),
+    type: text("type", { enum: TRANSACTION_TYPES }).notNull(),
+    // Signed: earn/bonus > 0, penalty/redeem < 0 (see CHECKs).
+    amount: integer("amount").notNull(),
+    // Only `earn` is ever pending (awaiting guardian confirmation).
+    status: text("status", { enum: ["pending", "confirmed", "rejected"] })
+      .notNull()
+      .default("confirmed"),
+    // Optional provenance references.
+    checkInId: text("check_in_id").references(() => checkIns.id),
+    habitId: text("habit_id").references(() => habits.id),
+    goalId: text("goal_id").references(() => goals.id),
+    planId: text("plan_id").references(() => plans.id),
+    redemptionId: text("redemption_id").references(() => redemptions.id),
+    ruleId: text("rule_id").references(() => penaltyRules.id),
+    reversesId: text("reverses_id").references(
+      (): AnySQLiteColumn => starTransactions.id,
+    ),
+    occurredOn: text("occurred_on").notNull(), // YYYY-MM-DD, family TZ
+    note: text("note"),
+    createdById: text("created_by_id").references(() => users.id),
+    confirmedById: text("confirmed_by_id").references(() => users.id),
+    confirmedAt: integer("confirmed_at", { mode: "timestamp_ms" }),
+    autoConfirmed: integer("auto_confirmed", { mode: "boolean" })
+      .notNull()
+      .default(false),
+    createdAt: createdAt(),
+  },
+  (t) => [
+    uniqueIndex("star_tx_check_in_unique").on(t.checkInId),
+    // A transaction can be reversed at most once.
+    uniqueIndex("star_tx_reverses_unique").on(t.reversesId),
+    // Idempotency backstop under check_ins' uniqueness.
+    uniqueIndex("star_tx_earn_once_per_day")
+      .on(t.childId, t.habitId, t.occurredOn)
+      .where(sql`${t.type} = 'earn'`),
+    index("star_tx_child_idx").on(t.childId, t.createdAt),
+    check(
+      "star_tx_positive_types",
+      sql`${t.type} NOT IN ('earn', 'bonus') OR ${t.amount} > 0`,
+    ),
+    check(
+      "star_tx_negative_types",
+      sql`${t.type} NOT IN ('penalty', 'redeem') OR ${t.amount} < 0`,
+    ),
+    check(
+      "star_tx_penalty_needs_rule",
+      sql`${t.type} != 'penalty' OR (${t.ruleId} IS NOT NULL AND ${t.note} IS NOT NULL)`,
+    ),
+    check(
+      "star_tx_reversal_needs_target",
+      sql`${t.type} != 'reversal' OR ${t.reversesId} IS NOT NULL`,
+    ),
+    check(
+      "star_tx_redeem_needs_redemption",
+      sql`${t.type} != 'redeem' OR ${t.redemptionId} IS NOT NULL`,
+    ),
+  ],
+);
+
+// Pre-agreed written rules — the only legitimate source of penalties.
+// The description is the family's written agreement; maxStars caps each
+// infraction so a bad evening can't wipe out weeks of earning.
+export const penaltyRules = sqliteTable("penalty_rules", {
+  id: id(),
+  childId: text("child_id")
+    .notNull()
+    .references(() => users.id),
+  title: text("title").notNull(),
+  description: text("description"),
+  maxStars: integer("max_stars").notNull().default(1),
+  active: integer("active", { mode: "boolean" }).notNull().default(true),
+  agreedAt: integer("agreed_at", { mode: "timestamp_ms" }),
+  createdById: text("created_by_id").references(() => users.id),
+  createdAt: createdAt(),
+});
+
+export const rewards = sqliteTable("rewards", {
+  id: id(),
+  familyId: text("family_id")
+    .notNull()
+    .references(() => families.id),
+  name: text("name").notNull(),
+  emoji: text("emoji").notNull().default("🎁"),
+  description: text("description"),
+  costStars: integer("cost_stars").notNull(),
+  active: integer("active", { mode: "boolean" }).notNull().default(true),
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: createdAt(),
+});
+
+// While status='requested', costStars counts as RESERVED: penalties can't
+// touch it and further requests must fit in balance − reserved.
+export const redemptions = sqliteTable("redemptions", {
+  id: id(),
+  childId: text("child_id")
+    .notNull()
+    .references(() => users.id),
+  rewardId: text("reward_id")
+    .notNull()
+    .references(() => rewards.id),
+  // Price snapshot at request time; catalog prices may change later.
+  costStars: integer("cost_stars").notNull(),
+  status: text("status", {
+    enum: ["requested", "approved", "rejected", "canceled"],
+  })
+    .notNull()
+    .default("requested"),
+  note: text("note"),
+  requestedAt: createdAt(),
+  decidedAt: integer("decided_at", { mode: "timestamp_ms" }),
+  decidedById: text("decided_by_id").references(() => users.id),
+});
+
+export const weeklyReviews = sqliteTable(
+  "weekly_reviews",
+  {
+    id: id(),
+    childId: text("child_id")
+      .notNull()
+      .references(() => users.id),
+    weekStart: text("week_start").notNull(), // Monday, YYYY-MM-DD
+    planId: text("plan_id").references(() => plans.id),
+    parentNote: text("parent_note"),
+    childNote: text("child_note"),
+    completedAt: integer("completed_at", { mode: "timestamp_ms" }),
+    createdAt: createdAt(),
+  },
+  (t) => [uniqueIndex("weekly_reviews_child_week").on(t.childId, t.weekStart)],
+);
+
 export type Family = typeof families.$inferSelect;
 export type User = typeof users.$inferSelect;
 export type Plan = typeof plans.$inferSelect;
 export type Habit = typeof habits.$inferSelect;
 export type Goal = typeof goals.$inferSelect;
+export type CheckIn = typeof checkIns.$inferSelect;
+export type StarTransaction = typeof starTransactions.$inferSelect;
+export type PenaltyRule = typeof penaltyRules.$inferSelect;
+export type Reward = typeof rewards.$inferSelect;
+export type Redemption = typeof redemptions.$inferSelect;
+export type WeeklyReview = typeof weeklyReviews.$inferSelect;

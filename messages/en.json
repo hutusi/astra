@@ -40,12 +40,45 @@
   },
   "parentDashboard": {
     "title": "Parent Hub",
-    "comingSoon": "Confirmation queue coming soon"
+    "pendingSection": "Pending check-ins",
+    "confirmAll": "Confirm all",
+    "pendingCount": "+{count} pending"
   },
   "childHome": {
     "greeting": "Hi, {name}!",
     "noHabitsToday": "No habits scheduled today — enjoy the rest",
-    "checkInComingSoon": "Check-in coming soon"
+    "progress": "Today {done}/{total}",
+    "weeklyProgress": "{done}/{target} this week",
+    "waitingConfirm": "· waiting for confirmation"
+  },
+  "checkin": {
+    "checkInNow": "Check in",
+    "pendingBadge": "Pending",
+    "errors": {
+      "alreadyDone": "Already checked in today",
+      "notFound": "Not found",
+      "habitInactive": "This habit is paused",
+      "invalidDate": "Invalid date",
+      "notPending": "Already handled",
+      "invalid": "Not allowed"
+    }
+  },
+  "childStars": {
+    "balance": "My stars",
+    "pending": "{count} stars waiting for confirmation",
+    "history": "Star history",
+    "empty": "No records yet — go check in!",
+    "pendingBadge": "Pending",
+    "rejectedBadge": "Rejected",
+    "autoConfirmed": "Auto-confirmed",
+    "types": {
+      "earn": "Habit check-in",
+      "bonus": "Bonus",
+      "penalty": "Penalty",
+      "redeem": "Redeemed",
+      "reversal": "Reversal",
+      "adjust": "Adjustment"
+    }
   },
   "childNav": {
     "today": "Today",

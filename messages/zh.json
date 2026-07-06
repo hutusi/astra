@@ -40,12 +40,45 @@
   },
   "parentDashboard": {
     "title": "家长中心",
-    "comingSoon": "待确认队列即将上线"
+    "pendingSection": "待确认打卡",
+    "confirmAll": "全部确认",
+    "pendingCount": "+{count} 待确认"
   },
   "childHome": {
     "greeting": "你好，{name}！",
     "noHabitsToday": "今天没有安排习惯，好好休息吧",
-    "checkInComingSoon": "打卡即将上线"
+    "progress": "今天 {done}/{total}",
+    "weeklyProgress": "本周 {done}/{target} 次",
+    "waitingConfirm": "· 等爸爸妈妈确认"
+  },
+  "checkin": {
+    "checkInNow": "打卡",
+    "pendingBadge": "待确认",
+    "errors": {
+      "alreadyDone": "今天已经打过卡啦",
+      "notFound": "内容不存在",
+      "habitInactive": "这个习惯暂停了",
+      "invalidDate": "日期不对哦",
+      "notPending": "已经处理过了",
+      "invalid": "没有权限"
+    }
+  },
+  "childStars": {
+    "balance": "我的星星",
+    "pending": "还有 {count} 颗星星等待确认",
+    "history": "星星记录",
+    "empty": "还没有记录，先去打卡吧",
+    "pendingBadge": "待确认",
+    "rejectedBadge": "未通过",
+    "autoConfirmed": "自动确认",
+    "types": {
+      "earn": "习惯打卡",
+      "bonus": "奖励",
+      "penalty": "扣除",
+      "redeem": "兑换",
+      "reversal": "撤销",
+      "adjust": "调整"
+    }
   },
   "childNav": {
     "today": "今天",
