@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { requireGuardian } from "@/lib/session";
 import { logout } from "@/app/login/actions";
+import { ParentNav } from "./nav";
 
 export default async function ParentLayout({
   children,
@@ -26,6 +27,7 @@ export default async function ParentLayout({
         </div>
       </header>
       <main className="flex flex-1 flex-col p-4">{children}</main>
+      <ParentNav />
     </div>
   );
 }

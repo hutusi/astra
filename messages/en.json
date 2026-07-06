@@ -45,5 +45,42 @@
   "childHome": {
     "greeting": "Hi, {name}!",
     "comingSoon": "Today's habits are on their way"
+  },
+  "nav": {
+    "dashboard": "Home",
+    "rewards": "Rewards",
+    "settings": "Settings"
+  },
+  "settings": {
+    "title": "Family Settings",
+    "familySection": "Family",
+    "familyCode": "Family code",
+    "familyCodeHint": "Kids type this code to log in",
+    "childrenSection": "Children",
+    "guardiansSection": "Guardians",
+    "addChild": "Add child",
+    "addGuardian": "Add guardian",
+    "name": "Name",
+    "avatar": "Avatar",
+    "birthdate": "Birthday",
+    "stage": "Growth stage",
+    "stageHint": "Controls what the child can do on their own",
+    "pin": "PIN (4 digits)",
+    "pinKeepEmpty": "Leave empty to keep current",
+    "email": "Email",
+    "password": "Password",
+    "locale": "Language",
+    "saved": "Saved",
+    "errors": {
+      "nameTaken": "That name is already taken",
+      "emailTaken": "That email is already in use",
+      "invalid": "Please check your input"
+    }
+  },
+  "stages": {
+    "parent_led": "Parent-led",
+    "co_authored": "Co-authored",
+    "child_led": "Child-led",
+    "autonomous": "Autonomous"
   }
 }

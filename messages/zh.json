@@ -45,5 +45,42 @@
   "childHome": {
     "greeting": "你好，{name}！",
     "comingSoon": "今天的习惯马上就来"
+  },
+  "nav": {
+    "dashboard": "首页",
+    "rewards": "奖励",
+    "settings": "设置"
+  },
+  "settings": {
+    "title": "家庭设置",
+    "familySection": "家庭",
+    "familyCode": "家庭代码",
+    "familyCodeHint": "孩子登录时输入这个代码",
+    "childrenSection": "孩子",
+    "guardiansSection": "家长",
+    "addChild": "添加孩子",
+    "addGuardian": "添加家长",
+    "name": "名字",
+    "avatar": "头像",
+    "birthdate": "生日",
+    "stage": "成长阶段",
+    "stageHint": "决定孩子可以自主做哪些事",
+    "pin": "PIN（4 位数字）",
+    "pinKeepEmpty": "留空则不修改",
+    "email": "邮箱",
+    "password": "密码",
+    "locale": "语言",
+    "saved": "已保存",
+    "errors": {
+      "nameTaken": "这个名字已被使用",
+      "emailTaken": "这个邮箱已被使用",
+      "invalid": "请检查输入内容"
+    }
+  },
+  "stages": {
+    "parent_led": "家长主导",
+    "co_authored": "共同制定",
+    "child_led": "孩子主导",
+    "autonomous": "自主管理"
   }
 }
