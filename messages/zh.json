@@ -1,0 +1,16 @@
+{
+  "common": {
+    "appName": "Astra 星图",
+    "loading": "加载中…",
+    "save": "保存",
+    "cancel": "取消",
+    "confirm": "确认",
+    "delete": "删除",
+    "edit": "编辑",
+    "back": "返回",
+    "stars": "星星"
+  },
+  "home": {
+    "tagline": "一起点亮成长的星空"
+  }
+}

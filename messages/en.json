@@ -1,0 +1,16 @@
+{
+  "common": {
+    "appName": "Astra",
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "stars": "Stars"
+  },
+  "home": {
+    "tagline": "Light up the constellation of growing up"
+  }
+}
