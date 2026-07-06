@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { requireChild } from "@/lib/session";
 import { logout } from "@/app/login/actions";
+import { ChildNav } from "./nav";
 
 export default async function ChildLayout({
   children,
@@ -22,6 +23,7 @@ export default async function ChildLayout({
         </form>
       </header>
       <main className="flex flex-1 flex-col p-4">{children}</main>
+      <ChildNav />
     </div>
   );
 }

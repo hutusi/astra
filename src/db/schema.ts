@@ -75,5 +75,89 @@ export const users = sqliteTable(
   ],
 );
 
+export const plans = sqliteTable(
+  "plans",
+  {
+    id: id(),
+    // Plans belong to the CHILD (the ledger does too) — they are yearly
+    // containers that come and go while the child's data continues.
+    childId: text("child_id")
+      .notNull()
+      .references(() => users.id),
+    name: text("name").notNull(),
+    periodStart: text("period_start").notNull(), // YYYY-MM-DD, family TZ
+    periodEnd: text("period_end").notNull(),
+    // Snapshot of the child's stage when the plan was authored; permission
+    // checks always use the child's CURRENT stage instead.
+    stageAtCreation: text("stage_at_creation", { enum: STAGES }).notNull(),
+    status: text("status", { enum: ["draft", "active", "archived"] })
+      .notNull()
+      .default("active"),
+    notes: text("notes"),
+    createdAt: createdAt(),
+  },
+  (t) => [
+    uniqueIndex("plans_one_active_per_child")
+      .on(t.childId)
+      .where(sql`${t.status} = 'active'`),
+  ],
+);
+
+export const SCHEDULE_TYPES = ["daily", "weekly_days", "x_per_week"] as const;
+export type ScheduleType = (typeof SCHEDULE_TYPES)[number];
+
+// The growth lever: `stars` habits pay currency, `streak` habits track
+// chains only, `none` habits are just observed. Moving a habit between
+// modes is how star-rewards fade as the child matures — config, not
+// migration. It also keeps intrinsically-motivating activities unpaid.
+export const REWARD_MODES = ["stars", "streak", "none"] as const;
+export type RewardMode = (typeof REWARD_MODES)[number];
+
+export const habits = sqliteTable("habits", {
+  id: id(),
+  planId: text("plan_id")
+    .notNull()
+    .references(() => plans.id),
+  name: text("name").notNull(),
+  emoji: text("emoji").notNull().default("⭐"),
+  description: text("description"),
+  scheduleType: text("schedule_type", { enum: SCHEDULE_TYPES })
+    .notNull()
+    .default("daily"),
+  // JSON array of ISO weekday numbers (Mon=1..Sun=7); weekly_days only.
+  scheduleDays: text("schedule_days"),
+  timesPerWeek: integer("times_per_week"), // x_per_week only
+  rewardMode: text("reward_mode", { enum: REWARD_MODES })
+    .notNull()
+    .default("stars"),
+  starsPerCompletion: integer("stars_per_completion").notNull().default(1),
+  status: text("status", { enum: ["active", "paused", "archived"] })
+    .notNull()
+    .default("active"),
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: createdAt(),
+  archivedAt: integer("archived_at", { mode: "timestamp_ms" }),
+});
+
+export const goals = sqliteTable("goals", {
+  id: id(),
+  planId: text("plan_id")
+    .notNull()
+    .references(() => plans.id),
+  name: text("name").notNull(),
+  description: text("description"),
+  bonusStars: integer("bonus_stars").notNull().default(0),
+  targetDate: text("target_date"),
+  status: text("status", { enum: ["active", "completed", "abandoned"] })
+    .notNull()
+    .default("active"),
+  completedAt: integer("completed_at", { mode: "timestamp_ms" }),
+  completedById: text("completed_by_id").references(() => users.id),
+  createdAt: createdAt(),
+});
+
 export type Family = typeof families.$inferSelect;
 export type User = typeof users.$inferSelect;
+export type Plan = typeof plans.$inferSelect;
+export type Habit = typeof habits.$inferSelect;
+export type Goal = typeof goals.$inferSelect;

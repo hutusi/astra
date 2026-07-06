@@ -44,7 +44,89 @@
   },
   "childHome": {
     "greeting": "Hi, {name}!",
-    "comingSoon": "Today's habits are on their way"
+    "noHabitsToday": "No habits scheduled today — enjoy the rest",
+    "checkInComingSoon": "Check-in coming soon"
+  },
+  "childNav": {
+    "today": "Today",
+    "stars": "Stars",
+    "rewards": "Rewards",
+    "plan": "My Sky"
+  },
+  "childPlan": {
+    "noPlan": "No constellation yet — ask your parents to create one",
+    "myHabits": "My habits",
+    "myGoals": "My goals"
+  },
+  "childOverview": {
+    "planSection": "Annual constellation",
+    "planSummary": "{habits} habits · {goals} goals",
+    "noPlanYet": "No plan yet — create one →"
+  },
+  "plan": {
+    "createPlan": "Create constellation",
+    "editPlan": "Edit constellation",
+    "defaultPlanName": "{year} Constellation",
+    "noPlanTitle": "Create {name}'s first constellation",
+    "noPlanHint": "A constellation is a year-long growth plan holding habits and goals",
+    "planName": "Name",
+    "periodStart": "Starts",
+    "periodEnd": "Ends",
+    "notes": "Notes",
+    "habitsSection": "Habits",
+    "goalsSection": "Goals",
+    "addHabit": "Add habit",
+    "addGoal": "Add goal",
+    "noHabits": "No habits yet — add the first one",
+    "noGoals": "No goals yet",
+    "habitName": "Habit name",
+    "emoji": "Icon",
+    "schedule": "Schedule",
+    "scheduleTypes": {
+      "daily": "Every day",
+      "weekly_days": "Fixed weekdays",
+      "x_per_week": "Times per week"
+    },
+    "weekdays": {
+      "1": "Mo",
+      "2": "Tu",
+      "3": "We",
+      "4": "Th",
+      "5": "Fr",
+      "6": "Sa",
+      "7": "Su"
+    },
+    "timesPerWeek": "Times per week",
+    "perWeek": "wk",
+    "rewardMode": "Reward mode",
+    "rewardModes": {
+      "stars": "Stars",
+      "streak": "Streak only",
+      "none": "Track only"
+    },
+    "rewardModeHint": "Things they already love doing are tracked, not paid",
+    "starsPerCompletion": "Stars per completion",
+    "habitStatus": "Status",
+    "habitStatuses": {
+      "active": "Active",
+      "paused": "Paused",
+      "archived": "Archived"
+    },
+    "goalName": "Goal name",
+    "bonusStars": "Completion bonus stars",
+    "targetDate": "Target date",
+    "goalStatus": "Status",
+    "goalStatuses": {
+      "active": "Active",
+      "completed": "Completed",
+      "abandoned": "Abandoned"
+    },
+    "errors": {
+      "activePlanExists": "There is already an active constellation",
+      "childNotFound": "Child not found",
+      "notFound": "Not found",
+      "invalid": "Please check your input"
+    }
   },
   "nav": {
     "dashboard": "Home",

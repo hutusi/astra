@@ -44,7 +44,89 @@
   },
   "childHome": {
     "greeting": "你好，{name}！",
-    "comingSoon": "今天的习惯马上就来"
+    "noHabitsToday": "今天没有安排习惯，好好休息吧",
+    "checkInComingSoon": "打卡即将上线"
+  },
+  "childNav": {
+    "today": "今天",
+    "stars": "星星",
+    "rewards": "奖励",
+    "plan": "星图"
+  },
+  "childPlan": {
+    "noPlan": "还没有星图，请爸爸妈妈先创建一个",
+    "myHabits": "我的习惯",
+    "myGoals": "我的目标"
+  },
+  "childOverview": {
+    "planSection": "年度星图",
+    "planSummary": "{habits} 个习惯 · {goals} 个目标",
+    "noPlanYet": "还没有星图，点击创建 →"
+  },
+  "plan": {
+    "createPlan": "创建星图",
+    "editPlan": "编辑星图",
+    "defaultPlanName": "{year} 年度星图",
+    "noPlanTitle": "为 {name} 创建第一张星图",
+    "noPlanHint": "星图是一年的成长计划，装着习惯和目标",
+    "planName": "名称",
+    "periodStart": "开始日期",
+    "periodEnd": "结束日期",
+    "notes": "备注",
+    "habitsSection": "习惯",
+    "goalsSection": "目标",
+    "addHabit": "添加习惯",
+    "addGoal": "添加目标",
+    "noHabits": "还没有习惯，添加第一个吧",
+    "noGoals": "还没有目标",
+    "habitName": "习惯名称",
+    "emoji": "图标",
+    "schedule": "频率",
+    "scheduleTypes": {
+      "daily": "每天",
+      "weekly_days": "每周固定几天",
+      "x_per_week": "每周若干次"
+    },
+    "weekdays": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "日"
+    },
+    "timesPerWeek": "每周次数",
+    "perWeek": "周",
+    "rewardMode": "奖励方式",
+    "rewardModes": {
+      "stars": "星星",
+      "streak": "只记连续",
+      "none": "只记录"
+    },
+    "rewardModeHint": "喜欢做的事记录就好，不用星星奖励",
+    "starsPerCompletion": "每次星星数",
+    "habitStatus": "状态",
+    "habitStatuses": {
+      "active": "进行中",
+      "paused": "暂停",
+      "archived": "已归档"
+    },
+    "goalName": "目标名称",
+    "bonusStars": "完成奖励星星",
+    "targetDate": "目标日期",
+    "goalStatus": "状态",
+    "goalStatuses": {
+      "active": "进行中",
+      "completed": "已完成",
+      "abandoned": "已放弃"
+    },
+    "errors": {
+      "activePlanExists": "已经有一张进行中的星图了",
+      "childNotFound": "找不到这个孩子",
+      "notFound": "内容不存在",
+      "invalid": "请检查输入内容"
+    }
   },
   "nav": {
     "dashboard": "首页",

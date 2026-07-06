@@ -1,5 +1,6 @@
 import { and, eq } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/db";
 import { users } from "@/db/schema";
@@ -18,17 +19,19 @@ export default async function ParentDashboard() {
       <h1 className="text-xl font-semibold">{t("title")}</h1>
       <div className="grid gap-4 sm:grid-cols-2">
         {children.map((child) => (
-          <Card key={child.id}>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <span className="text-2xl">{child.avatar}</span>
-                {child.name}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              {t("comingSoon")}
-            </CardContent>
-          </Card>
+          <Link key={child.id} href={`/parent/children/${child.id}`}>
+            <Card className="transition hover:bg-muted/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span className="text-2xl">{child.avatar}</span>
+                  {child.name}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                {t("comingSoon")}
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </div>
     </div>
