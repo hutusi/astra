@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,15 +35,17 @@ export function FormDialog({
   const t = useTranslations(errorNamespace);
   const tCommon = useTranslations("common");
   const [open, setOpen] = useState(false);
-  const [state, formAction, pending] = useActionState(action, null);
-
-  useEffect(() => {
-    if (open && state && "ok" in state) {
-      toast.success(tCommon("save"));
-      setOpen(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+  const [state, formAction, pending] = useActionState(
+    async (prev: FormState, formData: FormData) => {
+      const result = await action(prev, formData);
+      if (result && "ok" in result) {
+        toast.success(tCommon("saved"));
+        setOpen(false);
+      }
+      return result;
+    },
+    null,
+  );
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

@@ -8,7 +8,7 @@ import os from "node:os";
 import path from "node:path";
 import * as schema from "../src/db/schema";
 import type { Session } from "../src/lib/auth/token";
-import { addDays, mondayOf, todayIn } from "../src/lib/dates";
+import { mondayOf, todayIn } from "../src/lib/dates";
 import { checkIn } from "../src/server/services/checkins";
 import {
   currentStreak,

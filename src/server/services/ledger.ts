@@ -10,7 +10,6 @@ import {
   penaltyRules,
   redemptions,
   starTransactions,
-  users,
   type StarTransaction,
 } from "@/db/schema";
 import type { Session } from "@/lib/auth/token";

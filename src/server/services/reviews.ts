@@ -17,15 +17,6 @@ import { getActivePlan } from "./plans";
 
 const STREAK_LOOKBACK_DAYS = 90;
 
-/** Days of `week` (Mon..Sun) on which the habit is scheduled. */
-function scheduledDatesInWeek(habit: Habit, weekStart: string): string[] {
-  const days =
-    habit.scheduleType === "weekly_days" && habit.scheduleDays
-      ? (JSON.parse(habit.scheduleDays) as number[])
-      : [1, 2, 3, 4, 5, 6, 7];
-  return days.map((day) => addDays(weekStart, day - 1));
-}
-
 export function scheduledCountForWeek(habit: Habit): number {
   if (habit.scheduleType === "x_per_week") return habit.timesPerWeek ?? 1;
   if (habit.scheduleType === "weekly_days" && habit.scheduleDays) {
