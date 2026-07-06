@@ -161,6 +161,48 @@
       "invalid": "请检查输入内容"
     }
   },
+  "parentRewards": {
+    "title": "奖励",
+    "pendingSection": "待审批兑换",
+    "catalogSection": "奖励清单",
+    "addReward": "添加奖励",
+    "noRewards": "还没有奖励，添加第一个吧",
+    "name": "名称",
+    "emoji": "图标",
+    "cost": "所需星星",
+    "description": "说明",
+    "activeLabel": "上架（孩子可见）",
+    "inactive": "已下架",
+    "errors": {
+      "notFound": "内容不存在",
+      "notRequested": "已经处理过了",
+      "invalid": "请检查输入内容"
+    }
+  },
+  "childRewards": {
+    "title": "奖励商店",
+    "available": "可用 ⭐ {count}",
+    "reserved": "已预留 {count}",
+    "redeem": "兑换",
+    "notEnough": "星星不够",
+    "requested": "已提交，等爸爸妈妈批准",
+    "cancel": "取消",
+    "emptyCatalog": "商店还是空的，让爸爸妈妈上架一些奖励吧",
+    "myRequests": "我的兑换",
+    "status": {
+      "requested": "等待批准",
+      "approved": "已兑换",
+      "rejected": "未通过",
+      "canceled": "已取消"
+    },
+    "errors": {
+      "notFound": "内容不存在",
+      "insufficientStars": "星星不够哦",
+      "notRequested": "已经处理过了",
+      "inactive": "这个奖励下架了",
+      "invalid": "没有权限"
+    }
+  },
   "nav": {
     "dashboard": "首页",
     "rewards": "奖励",

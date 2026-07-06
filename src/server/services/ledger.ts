@@ -127,6 +127,32 @@ export async function settleEarnForCheckIn(
     );
 }
 
+/** Redeem transaction — always confirmed; caller guards the balance. */
+export async function insertRedeem(
+  tx: DbOrTx,
+  input: {
+    childId: string;
+    redemptionId: string;
+    cost: number;
+    note: string;
+    occurredOn: string;
+    createdById: string;
+  },
+): Promise<void> {
+  await tx.insert(starTransactions).values({
+    childId: input.childId,
+    type: "redeem",
+    amount: -Math.abs(input.cost),
+    status: "confirmed",
+    redemptionId: input.redemptionId,
+    note: input.note,
+    occurredOn: input.occurredOn,
+    createdById: input.createdById,
+    confirmedById: input.createdById,
+    confirmedAt: new Date(),
+  });
+}
+
 /** Pending earns older than the cutoff, for the auto-confirm sweep. */
 export async function pendingEarnsBefore(
   db: DbOrTx,

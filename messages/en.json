@@ -161,6 +161,48 @@
       "invalid": "Please check your input"
     }
   },
+  "parentRewards": {
+    "title": "Rewards",
+    "pendingSection": "Redemption requests",
+    "catalogSection": "Catalog",
+    "addReward": "Add reward",
+    "noRewards": "No rewards yet — add the first one",
+    "name": "Name",
+    "emoji": "Icon",
+    "cost": "Star cost",
+    "description": "Description",
+    "activeLabel": "Listed (visible to kids)",
+    "inactive": "Unlisted",
+    "errors": {
+      "notFound": "Not found",
+      "notRequested": "Already handled",
+      "invalid": "Please check your input"
+    }
+  },
+  "childRewards": {
+    "title": "Reward Shop",
+    "available": "Available ⭐ {count}",
+    "reserved": "{count} reserved",
+    "redeem": "Redeem",
+    "notEnough": "Not enough",
+    "requested": "Requested — waiting for approval",
+    "cancel": "Cancel",
+    "emptyCatalog": "The shop is empty — ask your parents to add rewards",
+    "myRequests": "My requests",
+    "status": {
+      "requested": "Waiting",
+      "approved": "Redeemed",
+      "rejected": "Declined",
+      "canceled": "Canceled"
+    },
+    "errors": {
+      "notFound": "Not found",
+      "insufficientStars": "Not enough stars",
+      "notRequested": "Already handled",
+      "inactive": "This reward is unlisted",
+      "invalid": "Not allowed"
+    }
+  },
   "nav": {
     "dashboard": "Home",
     "rewards": "Rewards",

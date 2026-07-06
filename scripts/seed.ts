@@ -3,7 +3,19 @@
 // Runs under the Bun runtime: bun run seed
 import bcrypt from "bcryptjs";
 import { db } from "../src/db";
-import { families, goals, habits, plans, users } from "../src/db/schema";
+import {
+  checkIns,
+  families,
+  goals,
+  habits,
+  penaltyRules,
+  plans,
+  redemptions,
+  rewards,
+  starTransactions,
+  users,
+  weeklyReviews,
+} from "../src/db/schema";
 import { getDatabaseUrl } from "../src/db/url";
 
 const url = getDatabaseUrl();
@@ -18,6 +30,13 @@ const PARENT_PASSWORD = process.env.SEED_PARENT_PASSWORD ?? "astra-dev";
 const CHILD_PIN = process.env.SEED_CHILD_PIN ?? "1234";
 
 async function seed() {
+  // FK dependency order: ledger first, principals last.
+  await db.delete(starTransactions);
+  await db.delete(redemptions);
+  await db.delete(checkIns);
+  await db.delete(weeklyReviews);
+  await db.delete(penaltyRules);
+  await db.delete(rewards);
   await db.delete(goals);
   await db.delete(habits);
   await db.delete(plans);
@@ -127,6 +146,13 @@ async function seed() {
       targetDate: `${year}-08-31`,
     },
     { planId: plan.id, name: "读完 20 本书", bonusStars: 30 },
+  ]);
+
+  // Economy anchor: one good week (~15-20 stars) ≈ one small reward.
+  await db.insert(rewards).values([
+    { familyId: family.id, name: "冰淇淋一个", emoji: "🍦", costStars: 15 },
+    { familyId: family.id, name: "游戏时间 1 小时", emoji: "🎮", costStars: 20 },
+    { familyId: family.id, name: "周末电影之夜", emoji: "🎬", costStars: 60 },
   ]);
 
   console.log(`Seeded family 星河之家 (code: ASTRA)
