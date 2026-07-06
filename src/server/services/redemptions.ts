@@ -184,6 +184,12 @@ export async function decideRedemption(
     if (updated.length === 0) throw new RedemptionError("notRequested");
 
     if (decision === "approved") {
+      // Re-check: adjustments/penalties since the request could have
+      // dropped the confirmed balance below the snapshot price.
+      const balance = await getBalance(tx, request.childId);
+      if (balance.confirmed < request.costStars) {
+        throw new RedemptionError("insufficientStars");
+      }
       await insertRedeem(tx, {
         childId: request.childId,
         redemptionId: request.id,

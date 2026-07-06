@@ -11,6 +11,7 @@ import { getActivePlan } from "@/server/services/plans";
 import {
   AddGoalDialog,
   AddHabitDialog,
+  CompleteGoalButton,
   CreatePlanDialog,
   EditGoalDialog,
   EditHabitDialog,
@@ -163,6 +164,9 @@ export default async function ChildPlanPage({
               >
                 {t(`goalStatuses.${goal.status}`)}
               </Badge>
+              {goal.status === "active" && (
+                <CompleteGoalButton goalId={goal.id} />
+              )}
               {goal.status !== "completed" && <EditGoalDialog goal={goal} />}
             </div>
           ))}

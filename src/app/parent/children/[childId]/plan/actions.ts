@@ -6,7 +6,12 @@ import { db } from "@/db";
 import { REWARD_MODES, SCHEDULE_TYPES } from "@/db/schema";
 import { AuthzError } from "@/lib/authz";
 import { getSession } from "@/lib/session";
-import { createGoal, GoalError, updateGoal } from "@/server/services/goals";
+import {
+  completeGoal,
+  createGoal,
+  GoalError,
+  updateGoal,
+} from "@/server/services/goals";
 import {
   createHabit,
   HabitError,
@@ -155,6 +160,20 @@ export async function createGoalAction(
     const input = goalSchema.parse(Object.fromEntries(formData));
     await createGoal(db, session, planId, input);
     revalidatePath("/parent/children", "layout");
+  } catch (error) {
+    return errorState(error);
+  }
+  return { ok: true };
+}
+
+export async function completeGoalAction(
+  goalId: string,
+): Promise<PlanFormState> {
+  try {
+    const session = await requireSession();
+    await completeGoal(db, session, goalId);
+    revalidatePath("/parent/children", "layout");
+    revalidatePath("/child/stars");
   } catch (error) {
     return errorState(error);
   }

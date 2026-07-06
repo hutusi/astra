@@ -1,13 +1,14 @@
-// Goal (one-time milestone) management. Completion + bonus stars land with
-// the ledger tools slice.
-import { eq } from "drizzle-orm";
+// Goal (one-time milestone) management.
+import { and, eq } from "drizzle-orm";
 import type { Db } from "@/db";
-import { goals, plans, type Goal } from "@/db/schema";
+import { families, goals, plans, type Goal } from "@/db/schema";
 import type { Session } from "@/lib/auth/token";
 import { assertCan } from "@/lib/authz";
+import { todayIn } from "@/lib/dates";
+import { insertBonus } from "./ledger";
 
 export class GoalError extends Error {
-  constructor(public code: "notFound") {
+  constructor(public code: "notFound" | "notActive") {
     super(code);
     this.name = "GoalError";
   }
@@ -74,4 +75,53 @@ export async function updateGoal(
       ...(input.status && { status: input.status }),
     })
     .where(eq(goals.id, goalId));
+}
+
+/** Milestone reached: mark completed and pay the bonus atomically. */
+export async function completeGoal(
+  db: Db,
+  session: Session,
+  goalId: string,
+): Promise<void> {
+  const goal = await db.query.goals.findFirst({ where: eq(goals.id, goalId) });
+  if (!goal) throw new GoalError("notFound");
+  const plan = await db.query.plans.findFirst({
+    where: eq(plans.id, goal.planId),
+    columns: { id: true, childId: true },
+  });
+  if (!plan) throw new GoalError("notFound");
+  await assertCan(db, session, "goal.complete", plan.childId);
+  if (goal.status !== "active") throw new GoalError("notActive");
+
+  const family = await db.query.families.findFirst({
+    where: eq(families.id, session.familyId),
+    columns: { timezone: true },
+  });
+  const occurredOn = todayIn(family?.timezone ?? "Asia/Shanghai");
+
+  await db.transaction(async (tx) => {
+    // Status guard: completes (and pays) exactly once under concurrency.
+    const updated = await tx
+      .update(goals)
+      .set({
+        status: "completed",
+        completedAt: new Date(),
+        completedById: session.userId,
+      })
+      .where(and(eq(goals.id, goalId), eq(goals.status, "active")))
+      .returning({ id: goals.id });
+    if (updated.length === 0) throw new GoalError("notActive");
+
+    if (goal.bonusStars > 0) {
+      await insertBonus(tx, {
+        childId: plan.childId,
+        amount: goal.bonusStars,
+        note: `🎯 ${goal.name}`,
+        goalId: goal.id,
+        planId: plan.id,
+        occurredOn,
+        createdById: session.userId,
+      });
+    }
+  });
 }

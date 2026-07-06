@@ -94,7 +94,56 @@
   "childOverview": {
     "planSection": "Annual constellation",
     "planSummary": "{habits} habits · {goals} goals",
-    "noPlanYet": "No plan yet — create one →"
+    "noPlanYet": "No plan yet — create one →",
+    "ledgerSection": "Star ledger",
+    "ledgerLink": "View ledger & rules"
+  },
+  "ledger": {
+    "title": "{name}'s star ledger",
+    "confirmed": "Balance",
+    "pendingLabel": "Pending",
+    "reservedLabel": "Reserved",
+    "availableLabel": "Available",
+    "rejectedLabel": "Rejected",
+    "reversedLabel": "Reversed",
+    "autoConfirmed": "Auto-confirmed",
+    "penalty": "Deduct",
+    "adjust": "Adjust",
+    "rule": "Agreed rule",
+    "reason": "Reason (visible to the child)",
+    "penaltyHint": "Only pre-agreed rules can deduct, and reserved stars are untouchable",
+    "amount": "Amount (may be negative)",
+    "amountHint": "Positive adds, negative removes; balance never goes below 0",
+    "reverse": "Reverse",
+    "rulesSection": "Agreed rules",
+    "addRule": "Add rule",
+    "noRules": "No rules yet. Write them down together with your child before any deduction",
+    "ruleTitle": "Rule",
+    "ruleDescription": "Agreement",
+    "ruleDescriptionHint": "The written agreement you made together",
+    "maxStars": "Max stars per deduction",
+    "ruleActive": "Active",
+    "historySection": "History",
+    "empty": "No records yet",
+    "types": {
+      "earn": "Habit check-in",
+      "bonus": "Goal bonus",
+      "penalty": "Deduction",
+      "redeem": "Redeemed",
+      "reversal": "Reversal",
+      "adjust": "Adjustment"
+    },
+    "errors": {
+      "notFound": "Not found",
+      "ruleInactive": "This rule is inactive",
+      "nothingToDeduct": "Nothing to deduct (no available stars)",
+      "wouldGoNegative": "The balance cannot go negative",
+      "alreadyReversed": "Already reversed",
+      "notReversible": "This record cannot be reversed",
+      "noteRequired": "A reason is required",
+      "zeroAmount": "Amount cannot be zero",
+      "invalid": "Please check your input"
+    }
   },
   "plan": {
     "createPlan": "Create constellation",
@@ -154,10 +203,13 @@
       "completed": "Completed",
       "abandoned": "Abandoned"
     },
+    "completeGoal": "Complete 🎉",
+    "goalCompleted": "Goal completed — bonus awarded!",
     "errors": {
       "activePlanExists": "There is already an active constellation",
       "childNotFound": "Child not found",
       "notFound": "Not found",
+      "notActive": "This goal is not active",
       "invalid": "Please check your input"
     }
   },

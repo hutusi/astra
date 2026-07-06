@@ -46,6 +46,21 @@ export default async function ChildOverviewPage({
 
       <Card>
         <CardHeader>
+          <CardTitle>{t("ledgerSection")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Link
+            href={`/parent/children/${childId}/ledger`}
+            className="flex items-center justify-between rounded-lg border p-3 transition hover:bg-muted"
+          >
+            <span className="font-medium">⭐ {t("ledgerLink")}</span>
+            <span>→</span>
+          </Link>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
           <CardTitle>{t("planSection")}</CardTitle>
         </CardHeader>
         <CardContent>
