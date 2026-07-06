@@ -12,5 +12,38 @@
   },
   "home": {
     "tagline": "Light up the constellation of growing up"
+  },
+  "login": {
+    "title": "Welcome back",
+    "parentTab": "Parent",
+    "childTab": "Kid",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signingIn": "Signing in…",
+    "familyCode": "Family code",
+    "familyCodeHint": "Ask your parents for your family's code",
+    "next": "Next",
+    "whoAreYou": "Who are you?",
+    "enterPin": "Enter your PIN",
+    "wrongPin": "Wrong PIN, try again",
+    "invalidCredentials": "Incorrect email or password",
+    "familyNotFound": "No family found with that code",
+    "locked": "Too many tries — take a 15 minute break",
+    "changeFamily": "Switch family",
+    "back": "Back"
+  },
+  "shell": {
+    "logout": "Log out",
+    "parentHome": "Parent Hub",
+    "childHome": "My Sky"
+  },
+  "parentDashboard": {
+    "title": "Parent Hub",
+    "comingSoon": "Confirmation queue coming soon"
+  },
+  "childHome": {
+    "greeting": "Hi, {name}!",
+    "comingSoon": "Today's habits are on their way"
   }
 }

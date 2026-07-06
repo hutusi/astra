@@ -12,5 +12,38 @@
   },
   "home": {
     "tagline": "一起点亮成长的星空"
+  },
+  "login": {
+    "title": "欢迎回来",
+    "parentTab": "家长",
+    "childTab": "孩子",
+    "email": "邮箱",
+    "password": "密码",
+    "signIn": "登录",
+    "signingIn": "登录中…",
+    "familyCode": "家庭代码",
+    "familyCodeHint": "问问爸爸妈妈你们家的代码是什么",
+    "next": "下一步",
+    "whoAreYou": "你是谁？",
+    "enterPin": "输入你的 PIN",
+    "wrongPin": "PIN 不对，再试一次",
+    "invalidCredentials": "邮箱或密码不正确",
+    "familyNotFound": "没有找到这个家庭",
+    "locked": "试太多次啦，休息 15 分钟再来",
+    "changeFamily": "换一个家庭",
+    "back": "返回"
+  },
+  "shell": {
+    "logout": "退出登录",
+    "parentHome": "家长中心",
+    "childHome": "我的星空"
+  },
+  "parentDashboard": {
+    "title": "家长中心",
+    "comingSoon": "待确认队列即将上线"
+  },
+  "childHome": {
+    "greeting": "你好，{name}！",
+    "comingSoon": "今天的习惯马上就来"
   }
 }
