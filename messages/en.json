@@ -84,7 +84,8 @@
     "today": "Today",
     "stars": "Stars",
     "rewards": "Rewards",
-    "plan": "My Sky"
+    "plan": "My Sky",
+    "review": "Review"
   },
   "childPlan": {
     "noPlan": "No constellation yet — ask your parents to create one",
@@ -96,7 +97,25 @@
     "planSummary": "{habits} habits · {goals} goals",
     "noPlanYet": "No plan yet — create one →",
     "ledgerSection": "Star ledger",
-    "ledgerLink": "View ledger & rules"
+    "ledgerLink": "View ledger & rules",
+    "reviewLink": "Weekly review"
+  },
+  "review": {
+    "title": "Weekly Review",
+    "starsIn": "Earned this week",
+    "starsOut": "Spent this week",
+    "weekCount": "{done}/{scheduled}",
+    "streak": "{count} in a row",
+    "noPlan": "No active constellation yet",
+    "notesSection": "Review notes",
+    "parentNoteLabel": "From the parents",
+    "childNoteLabel": "From {name}",
+    "childOwnNoteLabel": "My thoughts",
+    "fromParents": "From mom & dad",
+    "notePlaceholder": "How did this week go? What should change next week?",
+    "saveNote": "Save",
+    "saved": "Saved ✓",
+    "saveError": "Save failed, please retry"
   },
   "ledger": {
     "title": "{name}'s star ledger",

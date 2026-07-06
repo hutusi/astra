@@ -56,6 +56,13 @@ export default async function ChildOverviewPage({
             <span className="font-medium">⭐ {t("ledgerLink")}</span>
             <span>→</span>
           </Link>
+          <Link
+            href={`/parent/children/${childId}/review`}
+            className="mt-2 flex items-center justify-between rounded-lg border p-3 transition hover:bg-muted"
+          >
+            <span className="font-medium">📒 {t("reviewLink")}</span>
+            <span>→</span>
+          </Link>
         </CardContent>
       </Card>
 

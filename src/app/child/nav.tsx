@@ -9,6 +9,7 @@ const TABS = [
   { href: "/child/stars", key: "stars", emoji: "⭐" },
   { href: "/child/rewards", key: "rewards", emoji: "🎁" },
   { href: "/child/plan", key: "plan", emoji: "🌌" },
+  { href: "/child/review", key: "review", emoji: "📒" },
 ] as const;
 
 export function ChildNav() {

@@ -84,7 +84,8 @@
     "today": "今天",
     "stars": "星星",
     "rewards": "奖励",
-    "plan": "星图"
+    "plan": "星图",
+    "review": "回顾"
   },
   "childPlan": {
     "noPlan": "还没有星图，请爸爸妈妈先创建一个",
@@ -96,7 +97,25 @@
     "planSummary": "{habits} 个习惯 · {goals} 个目标",
     "noPlanYet": "还没有星图，点击创建 →",
     "ledgerSection": "星星账本",
-    "ledgerLink": "查看账本与规则"
+    "ledgerLink": "查看账本与规则",
+    "reviewLink": "每周回顾"
+  },
+  "review": {
+    "title": "每周回顾",
+    "starsIn": "本周获得",
+    "starsOut": "本周支出",
+    "weekCount": "{done}/{scheduled} 次",
+    "streak": "连续 {count} 次",
+    "noPlan": "还没有进行中的星图",
+    "notesSection": "回顾笔记",
+    "parentNoteLabel": "家长的话",
+    "childNoteLabel": "{name} 的话",
+    "childOwnNoteLabel": "我想说",
+    "fromParents": "爸爸妈妈的话",
+    "notePlaceholder": "这周做得怎么样？下周想怎么调整？",
+    "saveNote": "保存",
+    "saved": "已保存 ✓",
+    "saveError": "保存失败，请重试"
   },
   "ledger": {
     "title": "{name} 的星星账本",
