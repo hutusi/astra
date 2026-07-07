@@ -60,8 +60,6 @@ function RewardFields({ reward }: { reward?: Reward }) {
         />
         {t("activeLabel")}
       </label>
-      {/* unchecked checkboxes submit nothing; provide the off fallback */}
-      <input type="hidden" name="active" value="off" />
     </>
   );
 }

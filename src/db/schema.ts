@@ -71,8 +71,16 @@ export const users = sqliteTable(
       sql`${t.role} != 'guardian' OR ${t.email} IS NOT NULL`,
     ),
     check(
+      "users_guardian_has_password",
+      sql`${t.role} != 'guardian' OR ${t.passwordHash} IS NOT NULL`,
+    ),
+    check(
       "users_child_has_stage",
       sql`${t.role} != 'child' OR ${t.stage} IS NOT NULL`,
+    ),
+    check(
+      "users_child_has_pin",
+      sql`${t.role} != 'child' OR ${t.pinHash} IS NOT NULL`,
     ),
   ],
 );

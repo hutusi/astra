@@ -2,13 +2,18 @@
 
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
-import { AuthzError } from "@/lib/authz";
 import { requireGuardian } from "@/lib/session";
 import {
   CheckInError,
   decideCheckIn,
   pendingForFamily,
 } from "@/server/services/checkins";
+
+function revalidateAfterDecision() {
+  revalidatePath("/parent");
+  revalidatePath("/child");
+  revalidatePath("/child/stars");
+}
 
 export async function decideCheckInAction(
   checkInId: string,
@@ -18,14 +23,15 @@ export async function decideCheckInAction(
   try {
     await decideCheckIn(db, session, checkInId, decision);
   } catch (error) {
-    // Another guardian settled it first — the queue will refresh anyway.
-    if (error instanceof CheckInError || error instanceof AuthzError) {
+    // Another guardian settled it first (or it auto-confirmed) — the queue
+    // will refresh. Anything else (incl. AuthzError) is a real failure.
+    if (error instanceof CheckInError) {
       revalidatePath("/parent");
       return;
     }
     throw error;
   }
-  revalidatePath("/parent");
+  revalidateAfterDecision();
 }
 
 export async function confirmAllPendingAction(): Promise<void> {
@@ -35,11 +41,9 @@ export async function confirmAllPendingAction(): Promise<void> {
     try {
       await decideCheckIn(db, session, item.checkIn.id, "confirmed");
     } catch (error) {
-      if (error instanceof CheckInError || error instanceof AuthzError) {
-        continue; // settled concurrently — fine
-      }
+      if (error instanceof CheckInError) continue; // settled concurrently
       throw error;
     }
   }
-  revalidatePath("/parent");
+  revalidateAfterDecision();
 }

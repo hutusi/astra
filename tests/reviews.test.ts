@@ -65,6 +65,17 @@ describe("currentStreak", () => {
     ).toBe(1);
   });
 
+  test("weekly_days: an empty scheduleDays array returns 0 instead of hanging", () => {
+    const emptyDaysHabit = {
+      scheduleType: "weekly_days",
+      scheduleDays: "[]",
+      timesPerWeek: null,
+    } as schema.Habit;
+    expect(
+      currentStreak(emptyDaysHabit, new Set(["2026-07-08"]), TODAY),
+    ).toBe(0);
+  });
+
   test("x_per_week: consecutive weeks meeting the quota", () => {
     const dates = new Set([
       // last week: two check-ins (meets 2/week)

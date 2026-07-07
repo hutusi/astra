@@ -2,7 +2,7 @@
 
 import bcrypt from "bcryptjs";
 import { and, eq } from "drizzle-orm";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { db } from "@/db";
 import { families, users, type User } from "@/db/schema";
@@ -13,6 +13,7 @@ import {
   isLocked,
   recordPinFailure,
 } from "@/server/pin-lockout";
+import { rateLimitExceeded } from "@/server/rate-limit";
 
 export type LoginError =
   | "invalidCredentials"
@@ -70,6 +71,15 @@ export async function lookupFamilyChildren(
 ): Promise<FamilyChildren | null> {
   const normalized = code.trim().toUpperCase();
   if (!normalized) return null;
+
+  // Family codes are short; don't let anyone enumerate them (the lookup
+  // reveals children's names and avatars). 20 tries per 15 min per IP.
+  const headerStore = await headers();
+  const ip =
+    headerStore.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
+  if (rateLimitExceeded(`family-lookup:${ip}`, 20, 15 * 60 * 1000)) {
+    return null;
+  }
 
   const family = await db.query.families.findFirst({
     where: eq(families.code, normalized),

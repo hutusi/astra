@@ -254,7 +254,12 @@ export async function recordPenalty(
   });
 }
 
-/** Guardian manual correction; note required, balance floors at zero. */
+/**
+ * Guardian manual correction; note required, balance floors at zero.
+ * Deliberately allowed to dip into RESERVED stars (unlike penalties):
+ * adjust is the escape hatch for real mistakes, and the balance re-check
+ * at redemption approval keeps the ledger invariant safe regardless.
+ */
 export async function recordAdjust(
   db: Db,
   session: Session,

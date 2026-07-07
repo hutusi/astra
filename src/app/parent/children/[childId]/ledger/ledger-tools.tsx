@@ -192,7 +192,6 @@ export function EditRuleDialog({ rule }: { rule: PenaltyRule }) {
         />
         {t("ruleActive")}
       </label>
-      <input type="hidden" name="active" value="off" />
     </FormDialog>
   );
 }

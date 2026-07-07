@@ -19,9 +19,17 @@ import {
 import { getDatabaseUrl } from "../src/db/url";
 
 const url = getDatabaseUrl();
-if (!url.startsWith("file:") && process.env.SEED_FORCE !== "1") {
+const isRemote = !url.startsWith("file:");
+if (isRemote && process.env.SEED_FORCE !== "1") {
   console.error(
     `Refusing to seed remote database (${url}). Set SEED_FORCE=1 to override.`,
+  );
+  process.exit(1);
+}
+// Never plant the well-known dev credentials in a live database.
+if (isRemote && (!process.env.SEED_PARENT_PASSWORD || !process.env.SEED_CHILD_PIN)) {
+  console.error(
+    "Remote seeding requires explicit SEED_PARENT_PASSWORD and SEED_CHILD_PIN.",
   );
   process.exit(1);
 }
@@ -155,10 +163,12 @@ async function seed() {
     { familyId: family.id, name: "周末电影之夜", emoji: "🎬", costStars: 60 },
   ]);
 
+  const shownPassword = isRemote ? "(from env)" : PARENT_PASSWORD;
+  const shownPin = isRemote ? "(from env)" : CHILD_PIN;
   console.log(`Seeded family 星河之家 (code: ASTRA)
-  guardian: papa@astra.family / ${PARENT_PASSWORD}
-  guardian: mama@astra.family / ${PARENT_PASSWORD}
-  child:    小星 (stage co_authored, PIN ${CHILD_PIN})
+  guardian: papa@astra.family / ${shownPassword}
+  guardian: mama@astra.family / ${shownPassword}
+  child:    小星 (stage co_authored, PIN ${shownPin})
   plan:     ${plan.name} · 4 habits · 2 goals`);
 }
 

@@ -116,10 +116,11 @@ export async function createRuleAction(
 
 const updateRuleSchema = ruleSchema.omit({ childId: true }).extend({
   ruleId: z.string().min(1),
+  // Checkbox: present ("on") when checked, absent when not.
   active: z
-    .string()
+    .literal("on")
     .optional()
-    .transform((value) => value !== "off"),
+    .transform((value) => value === "on"),
 });
 
 export async function updateRuleAction(

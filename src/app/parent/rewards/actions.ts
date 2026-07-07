@@ -19,10 +19,11 @@ const rewardSchema = z.object({
   emoji: z.string().min(1).max(8),
   description: z.string().max(200).optional(),
   costStars: z.coerce.number().int().min(1).max(10000),
+  // Checkbox: present ("on") when checked, absent when not.
   active: z
-    .string()
+    .literal("on")
     .optional()
-    .transform((value) => value !== "off"),
+    .transform((value) => value === "on"),
 });
 
 function errorState(error: unknown): RewardFormState {

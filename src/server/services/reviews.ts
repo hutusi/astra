@@ -61,6 +61,8 @@ export function currentStreak(
     habit.scheduleType === "weekly_days" && habit.scheduleDays
       ? (JSON.parse(habit.scheduleDays) as number[])
       : [1, 2, 3, 4, 5, 6, 7];
+  // A stored "[]" would make the walk-back loops below spin forever.
+  if (scheduledDays.length === 0) return 0;
   const isScheduled = (date: string) =>
     scheduledDays.includes(isoWeekday(date));
 
