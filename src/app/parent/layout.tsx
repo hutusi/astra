@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { requireGuardian } from "@/lib/session";
 import { logout } from "@/app/login/actions";
-import { ParentNav } from "./nav";
+import { ParentNav, ParentTopNav } from "./nav";
 
 export default async function ParentLayout({
   children,
@@ -12,7 +12,8 @@ export default async function ParentLayout({
 
   return (
     <div className="flex min-h-full flex-1 flex-col">
-      <header className="flex items-center justify-between border-b px-4 py-3">
+      <ParentTopNav userName={session.name} />
+      <header className="flex items-center justify-between border-b px-4 py-3 md:hidden">
         <div className="flex items-center gap-2">
           <span>✨</span>
           <span className="font-semibold">{t("parentHome")}</span>
@@ -26,7 +27,7 @@ export default async function ParentLayout({
           </form>
         </div>
       </header>
-      <main className="flex flex-1 flex-col p-4">{children}</main>
+      <main className="flex flex-1 flex-col p-4 md:p-6">{children}</main>
       <ParentNav />
     </div>
   );
