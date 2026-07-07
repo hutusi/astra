@@ -21,7 +21,7 @@ export default async function ChildRewardsPage() {
   ]);
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-md flex-col gap-6 lg:max-w-3xl">
       <div className="flex flex-col items-center gap-1 pt-4 text-center">
         <h1 className="text-xl font-semibold">🎁 {t("title")}</h1>
         <p className="text-sm text-slate-300">
@@ -31,7 +31,7 @@ export default async function ChildRewardsPage() {
         </p>
       </div>
 
-      <ul className="flex flex-col gap-3">
+      <ul className="grid gap-3 lg:grid-cols-2">
         {catalog.length === 0 && (
           <p className="py-6 text-center text-sm text-slate-400">
             {t("emptyCatalog")}

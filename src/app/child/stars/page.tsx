@@ -39,8 +39,8 @@ export default async function ChildStarsPage() {
   const habitById = new Map(habitRows.map((h) => [h.id, h]));
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-col gap-6">
-      <div className="flex flex-col items-center gap-2 pt-6 text-center">
+    <div className="mx-auto grid w-full max-w-md gap-6 lg:max-w-3xl lg:grid-cols-[1fr_1.4fr] lg:items-start">
+      <div className="flex flex-col items-center gap-2 pt-6 text-center lg:sticky lg:top-20">
         <p className="text-sm text-slate-300">{t("balance")}</p>
         <p className="text-6xl font-bold text-amber-300">
           ⭐ {balance.confirmed}

@@ -21,7 +21,7 @@ export default async function ChildPlanView() {
   const goals = plan.goals.filter((g) => g.status !== "abandoned");
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-md flex-col gap-6 lg:max-w-3xl">
       <div className="flex flex-col items-center gap-1 pt-4 text-center">
         <h1 className="text-xl font-semibold">🌌 {plan.name}</h1>
         <p className="text-xs text-slate-400">
@@ -29,6 +29,7 @@ export default async function ChildPlanView() {
         </p>
       </div>
 
+      <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
       <section className="flex flex-col gap-2">
         <h2 className="text-sm font-medium text-slate-300">{t("myHabits")}</h2>
         <ul className="flex flex-col gap-2">
@@ -76,6 +77,7 @@ export default async function ChildPlanView() {
           ))}
         </ul>
       </section>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { StarField } from "@/components/star-field";
 import { requireChild } from "@/lib/session";
 import { logout } from "@/app/login/actions";
 import { ChildNav, ChildTopNav } from "./nav";
@@ -10,7 +11,10 @@ export default async function ChildLayout({
   const t = await getTranslations("shell");
 
   return (
-    <div className="flex min-h-full flex-1 flex-col bg-gradient-to-b from-indigo-950 via-slate-900 to-slate-950 text-white">
+    <div className="flex min-h-full flex-1 flex-col text-white">
+      {/* full-viewport sky: wide screens get more sky, not stretched UI */}
+      <div className="fixed inset-0 -z-20 bg-gradient-to-b from-indigo-950 via-slate-900 to-slate-950" />
+      <StarField />
       <ChildTopNav />
       <header className="flex items-center justify-between px-4 py-3 md:hidden">
         <div className="flex items-center gap-2">

@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { StarField } from "@/components/star-field";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChildLoginForm } from "./child-login-form";
 import { ParentLoginForm } from "./parent-login-form";
@@ -7,7 +8,9 @@ export default async function LoginPage() {
   const t = await getTranslations("login");
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-8 bg-gradient-to-b from-indigo-950 via-slate-900 to-slate-950 p-6 text-white">
+    <main className="flex flex-1 flex-col items-center justify-center gap-8 p-6 text-white">
+      <div className="fixed inset-0 -z-20 bg-gradient-to-b from-indigo-950 via-slate-900 to-slate-950" />
+      <StarField />
       <div className="flex flex-col items-center gap-2">
         <div className="text-5xl">✨</div>
         <h1 className="text-2xl font-semibold tracking-tight">Astra</h1>
