@@ -1,13 +1,12 @@
-import { and, eq } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/db";
-import { users } from "@/db/schema";
 import { requireGuardian } from "@/lib/session";
+import { getBalance } from "@/server/services/ledger";
 import { getActivePlan } from "@/server/services/plans";
+import { getChild } from "./get-child";
 
 export default async function ChildOverviewPage({
   params,
@@ -16,53 +15,37 @@ export default async function ChildOverviewPage({
 }) {
   const session = await requireGuardian();
   const { childId } = await params;
-  const t = await getTranslations("childOverview");
-  const tStages = await getTranslations("stages");
-
-  const child = await db.query.users.findFirst({
-    where: and(
-      eq(users.id, childId),
-      eq(users.familyId, session.familyId),
-      eq(users.role, "child"),
-    ),
-  });
+  const child = await getChild(session.familyId, childId);
   if (!child) notFound();
 
-  const plan = await getActivePlan(db, childId);
+  const t = await getTranslations("childOverview");
+  const tLedger = await getTranslations("ledger");
+
+  const [plan, balance] = await Promise.all([
+    getActivePlan(db, childId),
+    getBalance(db, childId),
+  ]);
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col gap-6">
-      <div className="flex items-center gap-3">
-        <span className="text-4xl">{child.avatar}</span>
-        <div className="flex flex-col">
-          <h1 className="text-xl font-semibold">{child.name}</h1>
-          {child.stage && (
-            <Badge variant="secondary" className="w-fit">
-              {tStages(child.stage)}
-            </Badge>
-          )}
-        </div>
-      </div>
-
+    <div className="grid gap-4 lg:grid-cols-2 lg:items-start">
       <Card>
         <CardHeader>
-          <CardTitle>{t("ledgerSection")}</CardTitle>
+          <CardTitle>{t("balanceSection")}</CardTitle>
         </CardHeader>
-        <CardContent>
-          <Link
-            href={`/parent/children/${childId}/ledger`}
-            className="flex items-center justify-between rounded-lg border p-3 transition hover:bg-muted"
-          >
-            <span className="font-medium">⭐ {t("ledgerLink")}</span>
-            <span>→</span>
-          </Link>
-          <Link
-            href={`/parent/children/${childId}/review`}
-            className="mt-2 flex items-center justify-between rounded-lg border p-3 transition hover:bg-muted"
-          >
-            <span className="font-medium">📒 {t("reviewLink")}</span>
-            <span>→</span>
-          </Link>
+        <CardContent className="flex items-baseline gap-4">
+          <span className="text-3xl font-semibold text-amber-600">
+            ⭐ {balance.confirmed}
+          </span>
+          {balance.pending > 0 && (
+            <span className="text-sm text-muted-foreground">
+              +{balance.pending} {tLedger("pendingLabel")}
+            </span>
+          )}
+          {balance.reserved > 0 && (
+            <span className="text-sm text-muted-foreground">
+              {balance.reserved} {tLedger("reservedLabel")}
+            </span>
+          )}
         </CardContent>
       </Card>
 

@@ -16,6 +16,22 @@ export class FamilyError extends Error {
 
 const BCRYPT_COST = 10;
 
+/** Family-scoped child fetch — the guard every /parent/children page needs. */
+export async function getFamilyChild(
+  db: Db,
+  familyId: string,
+  childId: string,
+): Promise<User | null> {
+  const child = await db.query.users.findFirst({
+    where: and(
+      eq(users.id, childId),
+      eq(users.familyId, familyId),
+      eq(users.role, "child"),
+    ),
+  });
+  return child ?? null;
+}
+
 export async function listFamilyMembers(
   db: Db,
   familyId: string,
