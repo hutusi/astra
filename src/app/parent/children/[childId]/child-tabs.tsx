@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { pathStartsWith } from "@/lib/utils";
 
 const SUB_TABS = [
   { segment: "", key: "overview" },
@@ -22,7 +23,7 @@ export function ChildTabs({ childId }: { childId: string }) {
       {SUB_TABS.map((tab) => {
         const href = `${base}${tab.segment}`;
         const active =
-          tab.segment === "" ? pathname === base : pathname.startsWith(href);
+          tab.segment === "" ? pathname === base : pathStartsWith(pathname, href);
         return (
           <Link
             key={tab.key}

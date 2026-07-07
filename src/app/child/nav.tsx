@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { logout } from "@/app/login/actions";
+import { pathStartsWith } from "@/lib/utils";
 
 const TABS = [
   { href: "/child", key: "today", emoji: "☀️" },
@@ -14,7 +15,9 @@ const TABS = [
 ] as const;
 
 function isActive(pathname: string, href: string): boolean {
-  return href === "/child" ? pathname === "/child" : pathname.startsWith(href);
+  return href === "/child"
+    ? pathname === "/child"
+    : pathStartsWith(pathname, href);
 }
 
 /** Phone shell: sticky bottom tab bar. Hidden on md+. */
