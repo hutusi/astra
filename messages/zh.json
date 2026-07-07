@@ -97,9 +97,13 @@
     "planSection": "年度星图",
     "planSummary": "{habits} 个习惯 · {goals} 个目标",
     "noPlanYet": "还没有星图，点击创建 →",
-    "ledgerSection": "星星账本",
-    "ledgerLink": "查看账本与规则",
-    "reviewLink": "每周回顾"
+    "balanceSection": "星星"
+  },
+  "childTabs": {
+    "overview": "概览",
+    "plan": "星图",
+    "ledger": "账本",
+    "review": "回顾"
   },
   "review": {
     "title": "每周回顾",
@@ -119,7 +123,6 @@
     "saveError": "保存失败，请重试"
   },
   "ledger": {
-    "title": "{name} 的星星账本",
     "confirmed": "余额",
     "pendingLabel": "待确认",
     "reservedLabel": "已预留",

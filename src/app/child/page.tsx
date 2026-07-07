@@ -37,7 +37,7 @@ export default async function ChildToday() {
   const done = habits.filter((h) => todayByHabit.has(h.id)).length;
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-1 flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-md flex-1 flex-col gap-6 lg:max-w-3xl">
       <div className="flex flex-col items-center gap-1 pt-4 text-center">
         <span className="text-4xl">{me?.avatar}</span>
         <h1 className="text-xl font-semibold">
@@ -54,7 +54,7 @@ export default async function ChildToday() {
           <p className="text-slate-300">{t("noHabitsToday")}</p>
         </div>
       ) : (
-        <ul className="flex flex-col gap-3">
+        <ul className="grid gap-3 lg:grid-cols-2">
           {habits.map((habit) => {
             const checkInRecord = todayByHabit.get(habit.id);
             const state: CheckInDisplayState = !checkInRecord

@@ -26,7 +26,7 @@ export default async function SettingsPage() {
   );
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
       <h1 className="text-xl font-semibold">{t("title")}</h1>
 
       <Card>
@@ -47,6 +47,7 @@ export default async function SettingsPage() {
         </CardContent>
       </Card>
 
+      <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>{t("childrenSection")}</CardTitle>
@@ -90,6 +91,7 @@ export default async function SettingsPage() {
           ))}
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

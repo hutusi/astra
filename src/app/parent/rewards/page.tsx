@@ -23,23 +23,30 @@ export default async function ParentRewardsPage() {
   ]);
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-4">
       <h1 className="text-xl font-semibold">{t("title")}</h1>
 
-      {pending.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>
-              {t("pendingSection")} ({pending.length})
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col divide-y">
-            <RedemptionQueueList items={pending} />
-          </CardContent>
-        </Card>
-      )}
+      <div
+        className={
+          pending.length > 0
+            ? "grid gap-4 lg:grid-cols-2 lg:items-start"
+            : "flex flex-col gap-4"
+        }
+      >
+        {pending.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                {t("pendingSection")} ({pending.length})
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col divide-y">
+              <RedemptionQueueList items={pending} />
+            </CardContent>
+          </Card>
+        )}
 
-      <Card>
+        <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>{t("catalogSection")}</CardTitle>
           <AddRewardDialog />
@@ -76,8 +83,9 @@ export default async function ParentRewardsPage() {
               <EditRewardDialog reward={reward} />
             </div>
           ))}
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

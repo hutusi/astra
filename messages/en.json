@@ -97,9 +97,13 @@
     "planSection": "Annual constellation",
     "planSummary": "{habits} habits · {goals} goals",
     "noPlanYet": "No plan yet — create one →",
-    "ledgerSection": "Star ledger",
-    "ledgerLink": "View ledger & rules",
-    "reviewLink": "Weekly review"
+    "balanceSection": "Stars"
+  },
+  "childTabs": {
+    "overview": "Overview",
+    "plan": "Plan",
+    "ledger": "Ledger",
+    "review": "Review"
   },
   "review": {
     "title": "Weekly Review",
@@ -119,7 +123,6 @@
     "saveError": "Save failed, please retry"
   },
   "ledger": {
-    "title": "{name}'s star ledger",
     "confirmed": "Balance",
     "pendingLabel": "Pending",
     "reservedLabel": "Reserved",
