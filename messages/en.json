@@ -1,0 +1,315 @@
+{
+  "common": {
+    "appName": "Astra",
+    "loading": "Loading…",
+    "save": "Save",
+    "saved": "Saved",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "stars": "Stars"
+  },
+  "home": {
+    "tagline": "Light up the constellation of growing up"
+  },
+  "login": {
+    "title": "Welcome back",
+    "parentTab": "Parent",
+    "childTab": "Kid",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signingIn": "Signing in…",
+    "familyCode": "Family code",
+    "familyCodeHint": "Ask your parents for your family's code",
+    "next": "Next",
+    "whoAreYou": "Who are you?",
+    "enterPin": "Enter your PIN",
+    "wrongPin": "Wrong PIN, try again",
+    "invalidCredentials": "Incorrect email or password",
+    "familyNotFound": "No family found with that code",
+    "locked": "Too many tries — take a 15 minute break",
+    "changeFamily": "Switch family",
+    "back": "Back"
+  },
+  "shell": {
+    "logout": "Log out",
+    "parentHome": "Parent Hub",
+    "childHome": "My Sky"
+  },
+  "parentDashboard": {
+    "title": "Parent Hub",
+    "pendingSection": "Pending check-ins",
+    "confirmAll": "Confirm all",
+    "pendingCount": "+{count} pending"
+  },
+  "childHome": {
+    "greeting": "Hi, {name}!",
+    "noHabitsToday": "No habits scheduled today — enjoy the rest",
+    "progress": "Today {done}/{total}",
+    "weeklyProgress": "{done}/{target} this week",
+    "waitingConfirm": "· waiting for confirmation"
+  },
+  "checkin": {
+    "checkInNow": "Check in",
+    "pendingBadge": "Pending",
+    "errors": {
+      "alreadyDone": "Already checked in today",
+      "notFound": "Not found",
+      "habitInactive": "This habit is paused",
+      "invalidDate": "Invalid date",
+      "notPending": "Already handled",
+      "invalid": "Not allowed"
+    }
+  },
+  "childStars": {
+    "balance": "My stars",
+    "pending": "{count} stars waiting for confirmation",
+    "history": "Star history",
+    "empty": "No records yet — go check in!",
+    "pendingBadge": "Pending",
+    "rejectedBadge": "Rejected",
+    "autoConfirmed": "Auto-confirmed",
+    "types": {
+      "earn": "Habit check-in",
+      "bonus": "Bonus",
+      "penalty": "Penalty",
+      "redeem": "Redeemed",
+      "reversal": "Reversal",
+      "adjust": "Adjustment"
+    }
+  },
+  "childNav": {
+    "today": "Today",
+    "stars": "Stars",
+    "rewards": "Rewards",
+    "plan": "My Sky",
+    "review": "Review"
+  },
+  "childPlan": {
+    "noPlan": "No constellation yet — ask your parents to create one",
+    "myHabits": "My habits",
+    "myGoals": "My goals"
+  },
+  "childOverview": {
+    "planSection": "Annual constellation",
+    "planSummary": "{habits} habits · {goals} goals",
+    "noPlanYet": "No plan yet — create one →",
+    "ledgerSection": "Star ledger",
+    "ledgerLink": "View ledger & rules",
+    "reviewLink": "Weekly review"
+  },
+  "review": {
+    "title": "Weekly Review",
+    "starsIn": "Earned this week",
+    "starsOut": "Spent this week",
+    "weekCount": "{done}/{scheduled}",
+    "streak": "{count} in a row",
+    "noPlan": "No active constellation yet",
+    "notesSection": "Review notes",
+    "parentNoteLabel": "From the parents",
+    "childNoteLabel": "From {name}",
+    "childOwnNoteLabel": "My thoughts",
+    "fromParents": "From mom & dad",
+    "notePlaceholder": "How did this week go? What should change next week?",
+    "saveNote": "Save",
+    "saved": "Saved ✓",
+    "saveError": "Save failed, please retry"
+  },
+  "ledger": {
+    "title": "{name}'s star ledger",
+    "confirmed": "Balance",
+    "pendingLabel": "Pending",
+    "reservedLabel": "Reserved",
+    "availableLabel": "Available",
+    "rejectedLabel": "Rejected",
+    "reversedLabel": "Reversed",
+    "autoConfirmed": "Auto-confirmed",
+    "penalty": "Deduct",
+    "adjust": "Adjust",
+    "rule": "Agreed rule",
+    "reason": "Reason (visible to the child)",
+    "penaltyHint": "Only pre-agreed rules can deduct, and reserved stars are untouchable",
+    "amount": "Amount (may be negative)",
+    "amountHint": "Positive adds, negative removes; balance never goes below 0",
+    "reverse": "Reverse",
+    "rulesSection": "Agreed rules",
+    "addRule": "Add rule",
+    "noRules": "No rules yet. Write them down together with your child before any deduction",
+    "ruleTitle": "Rule",
+    "ruleDescription": "Agreement",
+    "ruleDescriptionHint": "The written agreement you made together",
+    "maxStars": "Max stars per deduction",
+    "ruleActive": "Active",
+    "historySection": "History",
+    "empty": "No records yet",
+    "types": {
+      "earn": "Habit check-in",
+      "bonus": "Goal bonus",
+      "penalty": "Deduction",
+      "redeem": "Redeemed",
+      "reversal": "Reversal",
+      "adjust": "Adjustment"
+    },
+    "errors": {
+      "notFound": "Not found",
+      "ruleInactive": "This rule is inactive",
+      "nothingToDeduct": "Nothing to deduct (no available stars)",
+      "wouldGoNegative": "The balance cannot go negative",
+      "alreadyReversed": "Already reversed",
+      "notReversible": "This record cannot be reversed",
+      "noteRequired": "A reason is required",
+      "zeroAmount": "Amount cannot be zero",
+      "invalid": "Please check your input"
+    }
+  },
+  "plan": {
+    "createPlan": "Create constellation",
+    "editPlan": "Edit constellation",
+    "defaultPlanName": "{year} Constellation",
+    "noPlanTitle": "Create {name}'s first constellation",
+    "noPlanHint": "A constellation is a year-long growth plan holding habits and goals",
+    "planName": "Name",
+    "periodStart": "Starts",
+    "periodEnd": "Ends",
+    "notes": "Notes",
+    "habitsSection": "Habits",
+    "goalsSection": "Goals",
+    "addHabit": "Add habit",
+    "addGoal": "Add goal",
+    "noHabits": "No habits yet — add the first one",
+    "noGoals": "No goals yet",
+    "habitName": "Habit name",
+    "emoji": "Icon",
+    "schedule": "Schedule",
+    "scheduleTypes": {
+      "daily": "Every day",
+      "weekly_days": "Fixed weekdays",
+      "x_per_week": "Times per week"
+    },
+    "weekdays": {
+      "1": "Mo",
+      "2": "Tu",
+      "3": "We",
+      "4": "Th",
+      "5": "Fr",
+      "6": "Sa",
+      "7": "Su"
+    },
+    "timesPerWeek": "Times per week",
+    "perWeek": "wk",
+    "rewardMode": "Reward mode",
+    "rewardModes": {
+      "stars": "Stars",
+      "streak": "Streak only",
+      "none": "Track only"
+    },
+    "rewardModeHint": "Things they already love doing are tracked, not paid",
+    "starsPerCompletion": "Stars per completion",
+    "habitStatus": "Status",
+    "habitStatuses": {
+      "active": "Active",
+      "paused": "Paused",
+      "archived": "Archived"
+    },
+    "goalName": "Goal name",
+    "bonusStars": "Completion bonus stars",
+    "targetDate": "Target date",
+    "goalStatus": "Status",
+    "goalStatuses": {
+      "active": "Active",
+      "completed": "Completed",
+      "abandoned": "Abandoned"
+    },
+    "completeGoal": "Complete 🎉",
+    "goalCompleted": "Goal completed — bonus awarded!",
+    "errors": {
+      "activePlanExists": "There is already an active constellation",
+      "childNotFound": "Child not found",
+      "notFound": "Not found",
+      "notActive": "This goal is not active",
+      "invalid": "Please check your input"
+    }
+  },
+  "parentRewards": {
+    "title": "Rewards",
+    "pendingSection": "Redemption requests",
+    "catalogSection": "Catalog",
+    "addReward": "Add reward",
+    "noRewards": "No rewards yet — add the first one",
+    "name": "Name",
+    "emoji": "Icon",
+    "cost": "Star cost",
+    "description": "Description",
+    "activeLabel": "Listed (visible to kids)",
+    "inactive": "Unlisted",
+    "errors": {
+      "notFound": "Not found",
+      "notRequested": "Already handled",
+      "invalid": "Please check your input"
+    }
+  },
+  "childRewards": {
+    "title": "Reward Shop",
+    "available": "Available ⭐ {count}",
+    "reserved": "{count} reserved",
+    "redeem": "Redeem",
+    "notEnough": "Not enough",
+    "requested": "Requested — waiting for approval",
+    "cancel": "Cancel",
+    "emptyCatalog": "The shop is empty — ask your parents to add rewards",
+    "myRequests": "My requests",
+    "status": {
+      "requested": "Waiting",
+      "approved": "Redeemed",
+      "rejected": "Declined",
+      "canceled": "Canceled"
+    },
+    "errors": {
+      "notFound": "Not found",
+      "insufficientStars": "Not enough stars",
+      "notRequested": "Already handled",
+      "inactive": "This reward is unlisted",
+      "invalid": "Not allowed"
+    }
+  },
+  "nav": {
+    "dashboard": "Home",
+    "rewards": "Rewards",
+    "settings": "Settings"
+  },
+  "settings": {
+    "title": "Family Settings",
+    "familySection": "Family",
+    "familyCode": "Family code",
+    "familyCodeHint": "Kids type this code to log in",
+    "childrenSection": "Children",
+    "guardiansSection": "Guardians",
+    "addChild": "Add child",
+    "addGuardian": "Add guardian",
+    "name": "Name",
+    "avatar": "Avatar",
+    "birthdate": "Birthday",
+    "stage": "Growth stage",
+    "stageHint": "Controls what the child can do on their own",
+    "pin": "PIN (4 digits)",
+    "pinKeepEmpty": "Leave empty to keep current",
+    "email": "Email",
+    "password": "Password",
+    "locale": "Language",
+    "saved": "Saved",
+    "errors": {
+      "nameTaken": "That name is already taken",
+      "emailTaken": "That email is already in use",
+      "invalid": "Please check your input"
+    }
+  },
+  "stages": {
+    "parent_led": "Parent-led",
+    "co_authored": "Co-authored",
+    "child_led": "Child-led",
+    "autonomous": "Autonomous"
+  }
+}

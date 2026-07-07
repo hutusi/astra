@@ -1,0 +1,315 @@
+{
+  "common": {
+    "appName": "Astra 星图",
+    "loading": "加载中…",
+    "save": "保存",
+    "saved": "已保存",
+    "cancel": "取消",
+    "confirm": "确认",
+    "delete": "删除",
+    "edit": "编辑",
+    "back": "返回",
+    "stars": "星星"
+  },
+  "home": {
+    "tagline": "一起点亮成长的星空"
+  },
+  "login": {
+    "title": "欢迎回来",
+    "parentTab": "家长",
+    "childTab": "孩子",
+    "email": "邮箱",
+    "password": "密码",
+    "signIn": "登录",
+    "signingIn": "登录中…",
+    "familyCode": "家庭代码",
+    "familyCodeHint": "问问爸爸妈妈你们家的代码是什么",
+    "next": "下一步",
+    "whoAreYou": "你是谁？",
+    "enterPin": "输入你的 PIN",
+    "wrongPin": "PIN 不对，再试一次",
+    "invalidCredentials": "邮箱或密码不正确",
+    "familyNotFound": "没有找到这个家庭",
+    "locked": "试太多次啦，休息 15 分钟再来",
+    "changeFamily": "换一个家庭",
+    "back": "返回"
+  },
+  "shell": {
+    "logout": "退出登录",
+    "parentHome": "家长中心",
+    "childHome": "我的星空"
+  },
+  "parentDashboard": {
+    "title": "家长中心",
+    "pendingSection": "待确认打卡",
+    "confirmAll": "全部确认",
+    "pendingCount": "+{count} 待确认"
+  },
+  "childHome": {
+    "greeting": "你好，{name}！",
+    "noHabitsToday": "今天没有安排习惯，好好休息吧",
+    "progress": "今天 {done}/{total}",
+    "weeklyProgress": "本周 {done}/{target} 次",
+    "waitingConfirm": "· 等爸爸妈妈确认"
+  },
+  "checkin": {
+    "checkInNow": "打卡",
+    "pendingBadge": "待确认",
+    "errors": {
+      "alreadyDone": "今天已经打过卡啦",
+      "notFound": "内容不存在",
+      "habitInactive": "这个习惯暂停了",
+      "invalidDate": "日期不对哦",
+      "notPending": "已经处理过了",
+      "invalid": "没有权限"
+    }
+  },
+  "childStars": {
+    "balance": "我的星星",
+    "pending": "还有 {count} 颗星星等待确认",
+    "history": "星星记录",
+    "empty": "还没有记录，先去打卡吧",
+    "pendingBadge": "待确认",
+    "rejectedBadge": "未通过",
+    "autoConfirmed": "自动确认",
+    "types": {
+      "earn": "习惯打卡",
+      "bonus": "奖励",
+      "penalty": "扣除",
+      "redeem": "兑换",
+      "reversal": "撤销",
+      "adjust": "调整"
+    }
+  },
+  "childNav": {
+    "today": "今天",
+    "stars": "星星",
+    "rewards": "奖励",
+    "plan": "星图",
+    "review": "回顾"
+  },
+  "childPlan": {
+    "noPlan": "还没有星图，请爸爸妈妈先创建一个",
+    "myHabits": "我的习惯",
+    "myGoals": "我的目标"
+  },
+  "childOverview": {
+    "planSection": "年度星图",
+    "planSummary": "{habits} 个习惯 · {goals} 个目标",
+    "noPlanYet": "还没有星图，点击创建 →",
+    "ledgerSection": "星星账本",
+    "ledgerLink": "查看账本与规则",
+    "reviewLink": "每周回顾"
+  },
+  "review": {
+    "title": "每周回顾",
+    "starsIn": "本周获得",
+    "starsOut": "本周支出",
+    "weekCount": "{done}/{scheduled} 次",
+    "streak": "连续 {count} 次",
+    "noPlan": "还没有进行中的星图",
+    "notesSection": "回顾笔记",
+    "parentNoteLabel": "家长的话",
+    "childNoteLabel": "{name} 的话",
+    "childOwnNoteLabel": "我想说",
+    "fromParents": "爸爸妈妈的话",
+    "notePlaceholder": "这周做得怎么样？下周想怎么调整？",
+    "saveNote": "保存",
+    "saved": "已保存 ✓",
+    "saveError": "保存失败，请重试"
+  },
+  "ledger": {
+    "title": "{name} 的星星账本",
+    "confirmed": "余额",
+    "pendingLabel": "待确认",
+    "reservedLabel": "已预留",
+    "availableLabel": "可用",
+    "rejectedLabel": "未通过",
+    "reversedLabel": "已撤销",
+    "autoConfirmed": "自动确认",
+    "penalty": "扣星",
+    "adjust": "调整",
+    "rule": "约定规则",
+    "reason": "原因（孩子会看到）",
+    "penaltyHint": "只能按事先约定的规则扣星，且不会动用已预留的星星",
+    "amount": "数量（可为负数）",
+    "amountHint": "正数加星，负数减星，余额不会低于 0",
+    "reverse": "撤销",
+    "rulesSection": "约定规则",
+    "addRule": "添加规则",
+    "noRules": "还没有约定规则。扣星前，先和孩子一起写下规则",
+    "ruleTitle": "规则",
+    "ruleDescription": "约定内容",
+    "ruleDescriptionHint": "和孩子一起商量好的书面约定",
+    "maxStars": "每次最多扣星",
+    "ruleActive": "生效中",
+    "historySection": "账本记录",
+    "empty": "还没有记录",
+    "types": {
+      "earn": "习惯打卡",
+      "bonus": "目标奖励",
+      "penalty": "扣星",
+      "redeem": "兑换",
+      "reversal": "撤销",
+      "adjust": "调整"
+    },
+    "errors": {
+      "notFound": "内容不存在",
+      "ruleInactive": "这条规则已停用",
+      "nothingToDeduct": "没有可扣的星星（余额或可用为 0）",
+      "wouldGoNegative": "余额不能变成负数",
+      "alreadyReversed": "已经撤销过了",
+      "notReversible": "这条记录不能撤销",
+      "noteRequired": "必须填写原因",
+      "zeroAmount": "数量不能为 0",
+      "invalid": "请检查输入内容"
+    }
+  },
+  "plan": {
+    "createPlan": "创建星图",
+    "editPlan": "编辑星图",
+    "defaultPlanName": "{year} 年度星图",
+    "noPlanTitle": "为 {name} 创建第一张星图",
+    "noPlanHint": "星图是一年的成长计划，装着习惯和目标",
+    "planName": "名称",
+    "periodStart": "开始日期",
+    "periodEnd": "结束日期",
+    "notes": "备注",
+    "habitsSection": "习惯",
+    "goalsSection": "目标",
+    "addHabit": "添加习惯",
+    "addGoal": "添加目标",
+    "noHabits": "还没有习惯，添加第一个吧",
+    "noGoals": "还没有目标",
+    "habitName": "习惯名称",
+    "emoji": "图标",
+    "schedule": "频率",
+    "scheduleTypes": {
+      "daily": "每天",
+      "weekly_days": "每周固定几天",
+      "x_per_week": "每周若干次"
+    },
+    "weekdays": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "日"
+    },
+    "timesPerWeek": "每周次数",
+    "perWeek": "周",
+    "rewardMode": "奖励方式",
+    "rewardModes": {
+      "stars": "星星",
+      "streak": "只记连续",
+      "none": "只记录"
+    },
+    "rewardModeHint": "喜欢做的事记录就好，不用星星奖励",
+    "starsPerCompletion": "每次星星数",
+    "habitStatus": "状态",
+    "habitStatuses": {
+      "active": "进行中",
+      "paused": "暂停",
+      "archived": "已归档"
+    },
+    "goalName": "目标名称",
+    "bonusStars": "完成奖励星星",
+    "targetDate": "目标日期",
+    "goalStatus": "状态",
+    "goalStatuses": {
+      "active": "进行中",
+      "completed": "已完成",
+      "abandoned": "已放弃"
+    },
+    "completeGoal": "完成 🎉",
+    "goalCompleted": "目标完成，奖励已发放！",
+    "errors": {
+      "activePlanExists": "已经有一张进行中的星图了",
+      "childNotFound": "找不到这个孩子",
+      "notFound": "内容不存在",
+      "notActive": "这个目标不在进行中",
+      "invalid": "请检查输入内容"
+    }
+  },
+  "parentRewards": {
+    "title": "奖励",
+    "pendingSection": "待审批兑换",
+    "catalogSection": "奖励清单",
+    "addReward": "添加奖励",
+    "noRewards": "还没有奖励，添加第一个吧",
+    "name": "名称",
+    "emoji": "图标",
+    "cost": "所需星星",
+    "description": "说明",
+    "activeLabel": "上架（孩子可见）",
+    "inactive": "已下架",
+    "errors": {
+      "notFound": "内容不存在",
+      "notRequested": "已经处理过了",
+      "invalid": "请检查输入内容"
+    }
+  },
+  "childRewards": {
+    "title": "奖励商店",
+    "available": "可用 ⭐ {count}",
+    "reserved": "已预留 {count}",
+    "redeem": "兑换",
+    "notEnough": "星星不够",
+    "requested": "已提交，等爸爸妈妈批准",
+    "cancel": "取消",
+    "emptyCatalog": "商店还是空的，让爸爸妈妈上架一些奖励吧",
+    "myRequests": "我的兑换",
+    "status": {
+      "requested": "等待批准",
+      "approved": "已兑换",
+      "rejected": "未通过",
+      "canceled": "已取消"
+    },
+    "errors": {
+      "notFound": "内容不存在",
+      "insufficientStars": "星星不够哦",
+      "notRequested": "已经处理过了",
+      "inactive": "这个奖励下架了",
+      "invalid": "没有权限"
+    }
+  },
+  "nav": {
+    "dashboard": "首页",
+    "rewards": "奖励",
+    "settings": "设置"
+  },
+  "settings": {
+    "title": "家庭设置",
+    "familySection": "家庭",
+    "familyCode": "家庭代码",
+    "familyCodeHint": "孩子登录时输入这个代码",
+    "childrenSection": "孩子",
+    "guardiansSection": "家长",
+    "addChild": "添加孩子",
+    "addGuardian": "添加家长",
+    "name": "名字",
+    "avatar": "头像",
+    "birthdate": "生日",
+    "stage": "成长阶段",
+    "stageHint": "决定孩子可以自主做哪些事",
+    "pin": "PIN（4 位数字）",
+    "pinKeepEmpty": "留空则不修改",
+    "email": "邮箱",
+    "password": "密码",
+    "locale": "语言",
+    "saved": "已保存",
+    "errors": {
+      "nameTaken": "这个名字已被使用",
+      "emailTaken": "这个邮箱已被使用",
+      "invalid": "请检查输入内容"
+    }
+  },
+  "stages": {
+    "parent_led": "家长主导",
+    "co_authored": "共同制定",
+    "child_led": "孩子主导",
+    "autonomous": "自主管理"
+  }
+}
