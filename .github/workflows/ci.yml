@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# A newer push to the same branch makes the in-flight run irrelevant.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Next itself runs under Node, so the typecheck and build must see the
+      # same major version production does.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # Version comes from the `packageManager` field in package.json.
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install --frozen-lockfile
+
+      - run: bun run lint
+
+      # tsc --noEmit && bun test. Tests build their own throwaway libSQL
+      # databases from drizzle/, so no database setup or secrets are needed.
+      - run: bun run verify
+
+      - run: bun run build
