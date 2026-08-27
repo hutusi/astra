@@ -1,0 +1,12 @@
+{
+  "name": "Astra",
+  "install": "./scripts/cloud-agent-install.sh",
+  "terminals": [
+    {
+      "name": "dev",
+      "command": "bun dev",
+      "description": "Next.js dev server on http://localhost:3000. Log in with family code ASTRA (child 小星, PIN 1234) or papa@astra.family / astra-dev."
+    }
+  ],
+  "ports": [{ "name": "web", "port": 3000 }]
+}
